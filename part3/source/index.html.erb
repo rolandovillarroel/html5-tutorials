@@ -1,0 +1,179 @@
+
+<body style="background-color:silver; margin:0; font-family:'open sans', sans-serif;">
+  <main style="margin-left:20%; margin-right:20%; margin-bottom:10em; padding:1em; width:60%;padding-top:2em; background-color:white;">
+    <h1>Getting Started with Rails part3</h1>
+    <p style="margin-bottom:1em;">This guide covers getting up and running with Ruby on Rails.</p>
+    <p>After reading this guide, you will know.</p>
+    <ul  style="font-weight:bold;">
+      <li style="margin-bottom:1em">How to install Rails, create a new Rails application, and connect your application to a database.</li>
+      <li style="margin-bottom:1em">The general layout of a Rails application.</li>
+      <li style="margin-bottom:1em">The basic principles of MVC (Model, View, Controller) and RESTful design.</li>
+      <li style="margin-bottom:1em">How to quickly generate the starting pieces of a Rails application.</li>
+    </ul>
+    <h2>1 Guide Assumptions</h2>
+    <p>
+      This guide is designed for beginners who want to get started with a Rails application from scratch. It<br/>
+      does not assume that you have any prior experience with Rails. However, to get the most out of it,<br/>
+      you need to have some prerequisites installed:
+    </p>
+    <ul>
+      <li>The Ruby language version 1.9.3 or newer.</li>
+      <li>The RubyGems packaging system, which is installed with Ruby versions 1.9 and later. To<br/>
+       learn more about RubyGems, please read the RubyGems Guides.</li>
+      <li>A working installation of the SQLite3 Database.</li>
+    </ul>
+    <p>Rails is a web application framework running on the Ruby programming language. If you have no<br/>
+     prior experience with Ruby, you will find a very steep learning curve diving straight into Rails. There<br/>
+      are several curated lists of online resources for learning Ruby:</p>
+    <ul>
+      <li>Official Ruby Programming Language website</li>
+      <li>reSRC's List of Free Programming Books</li>
+    </ul>
+    <p>Be aware that some resources, while still excellent, cover versions of Ruby as old as 1.6, and<br/>
+     commonly 1.8, and will not include some syntax that you will see in day-to-day development with<br/>
+      Rails.</p>
+    <h2>2 What is Rails?</h2>
+    <p>Rails is a web application development framework written in the Ruby language. It is designed to<br/>
+     make programming web applications easier by making assumptions about what every developer<br/>
+      needs to get started. It allows you to write less code while accomplishing more than many other<br/>
+       languages and frameworks. Experienced Rails developers also report that it makes web application<br/>
+        development more fun.</p>
+    <p>Rails is opinionated software. It makes the assumption that there is the "best" way to do things, and<br/>
+     it's designed to encourage that way - and in some cases to discourage alternatives. If you learn<br/>
+      "The Rails Way" you'll probably discover a tremendous increase in productivity. If you persist in<br/> 
+      bringing old habits from other languages to your Rails development, and trying to use patterns you<br/> 
+      learned elsewhere, you may have a less happy experience.</p>
+    <p>The Rails philosophy includes two major guiding principles:</p>
+    <ul>
+      <li><strong>Don't Repeat Yourself:</strong> DRY is a principle of software development which states that<br/>
+       "Every piece of knowledge must have a single, unambiguous, authoritative representation<br/> 
+       within a system." By not writing the same information over and over again, our code is<br/> 
+       more maintainable, more extensible, and less buggy.</li>
+       <li><strong>Convention Over Configuration:</strong> Rails has opinions about the best way to do many<br/>
+        things in a web application, and defaults to this set of conventions, rather than<br/>
+         require that you specify every minutiae through endless configuration files.</li>
+    </ul>
+    <h2>3 Creating a New Rails Project</h2>
+    <p style="margin-bottom:2em">The best way to use this guide is to follow each step as it happens, no code or step needed to<br/>
+     make this example application has been left out, so you can literally follow along step by step.</p>
+    <p>By following along with this guide, you'll create a Rails project called blog, a (very) simple weblog.<br/>
+     Before you can start building the application, you need to make sure that you have Rails itself<br/>
+      installed.</p>
+    <p style="padding:1em;background-color:lightblue;">The examples below use $ to represent your terminal prompt in a UNIX-like OS, though it<br/>
+     may have been customized to appear differently. If you are using Windows, your prompt<br/>
+      will look something like c:\source_code></p>
+    <h3>3.1 Installing Rails</h3>
+    <p>Open up a command line prompt. On Mac OS X open Terminal.app, on Windows choose "Run"<br/>
+     from your Start menu and type 'cmd.exe'. Any commands prefaced with a dollar sign $ should be<br/>
+      run in the command line. Verify that you have a current version of Ruby installed:</p>
+    <p style="padding:1em;background-color:lightblue;">A number of tools exist to help you quickly install Ruby and Ruby on Rails on your system.<br/> Windows users can use Rails Installer, while Mac OS X users can use Tokaido.</p>
+    <p style="padding:1em;background-color:lightgrey;">$ ruby -v<br/>
+      ruby 2.0.0p353</p>
+    <p>If you don't have Ruby installed have a look at ruby-lang.org for possible ways to install Ruby on<br/>
+     your platform.</p>
+    <p>Many popular UNIX-like OSes ship with an acceptable version of SQLite3. Windows users and<br/>
+     others can find installation instructions at the SQLite3 website. Verify that it is correctly installed and<br/>
+      in your PATH:</p>
+    <p style="padding:1em;background-color:lightgrey;">$ sqlite3 --version</p>
+    <p>The program should report its version.</p>
+    <p>To install Rails, use the gem install command provided by RubyGems:</p>
+    <p style="padding:1em;background-color:lightgrey;">$ gem install rails</p>
+    <p>To verify that you have everything installed correctly, you should be able to run the following:</p>
+    <p style="padding:1em;background-color:lightgrey;">$ rails --version</p>
+    <p>If it says something like "Rails 4.2.0", you are ready to continue.</p>
+    <h3>3.2 Creating the Blog Application</h3>
+    <p>Rails comes with a number of scripts called generators that are designed to make your<br/>
+     development life easier by creating everything that's necessary to start working on a particular task.<br/>
+      One of these is the new application generator, which will provide you with the foundation of a fresh<br/>
+       Rails application so that you don't have to write it yourself.</p>
+    <p>To use this generator, open a terminal, navigate to a directory where you have rights to create files,<br/>
+     and type:</p>
+     <p style="padding:1em;background-color:lightgrey;">$ rails new blog</p>
+    <p>This will create a Rails application called Blog in a blog directory and install the gem dependencies<br/>
+     that are already mentioned in Gemfile using bundle install.</p>
+    <p style="padding:1em;background-color:lightblue;">You can see all of the command line options that the Rails application builder accepts by<br/>
+     running rails new -h.</p>
+    <p>After you create the blog application, switch to its folder:</p>
+    <p style="padding:1em;background-color:lightgrey;">$ cd blog</p>
+    <p>The blog directory has a number of auto-generated files and folders that make up the structure of<br/>
+     a Rails application. Most of the work in this tutorial will happen in the app folder, but here's a basic<br/>
+      rundown on the function of each of the files and folders that Rails created by default:</p>
+    <table style="border: 2px solid gray; background-color:lightgrey;border-spacing:0; ">
+      <thead height="100" style="background-color:lightgrey">
+        <tr style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;" >
+          <th style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;" >File/folder</th>
+          <th style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Purpose</th>
+        </tr>
+      </thead>
+      <tbody style="background-color:white">
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">app/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Contains the controllers, models, views, helpers, mailers and assets for your<br/>
+           application. You'll focus on this folder for the remainder of this guide.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">bin/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Contains the rails script that starts your app and can contain other scripts you<br/>
+           use to setup, deploy or run your application.</td>
+
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">config/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Configure your application's routes, database, and more. This is covered in<br/>
+           more detail in Configuring Rails Applications.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">config.ru</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Rack configuration for Rack based servers used to start the application.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">db/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Contains your current database schema, as well as the database migrations.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Gemfile<br/>Gemfile.lock</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">These files allow you to specify what gem dependencies are needed for<br/>
+           your Rails application. These files are used by the Bundler gem. For more<br/>
+            information about Bundler, see the Bundler website.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">lib/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Extended modules for your application.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">log</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">  Application log files.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">public/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">The only folder seen by the world as-is. Contains static files and compiled<br/>
+           assets.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Rakefile</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">This file locates and loads tasks that can be run from the command line. The<br/> task definitions are defined throughout the components of Rails. Rather than<br/> changing Rakefile, you should add your own tasks by adding files to the<br/>
+           lib/tasks directory of your application.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">README.rdoc</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">This is a brief instruction manual for your application. You should edit this file<br/>
+           to tell others what your application does, how to set it up, and so on.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">test/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Unit tests, fixtures, and other test apparatus. These are covered in Testing<br/>
+           Rails Applications.</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">tmp/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">Temporary files (like cache, pid, and session files).</td>
+        </tr>
+        <tr height="100">
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">vendor/</td>
+          <td style="border-left-width:1px;border-right-width:1px;border-top-width:1px;border-bottom-width:1px; border-color:grey; border-style:solid;">A place for all third-party code. In a typical Rails application this includes<br/>
+           vendored gems.</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
